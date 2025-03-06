@@ -9,9 +9,6 @@ import BuilderPage from "./assets/pages/BuilderPage";
 function App() {
   const [logged, setLogged] = useState(false);
   const [username, setUsername] = useState(null);
-  const [cvData, setCvData] = useState(() => {
-    return JSON.parse(localStorage.getItem("cvDraft")) || null;
-  });
   const [hasDraft, setHasDraft] = useState(!!localStorage.getItem("cvDraft"));
 
   const navigate = useNavigate();
@@ -43,12 +40,7 @@ function App() {
         <Route
           path="/builder"
           element={
-            <BuilderPage
-              className="page-wrapper"
-              setHasDraft={setHasDraft}
-              cvData={cvData}
-              setCvData={setCvData}
-            />
+            <BuilderPage className="page-wrapper" setHasDraft={setHasDraft} />
           }
         />
         <Route path="*" element={<Navigate to="/" />} />

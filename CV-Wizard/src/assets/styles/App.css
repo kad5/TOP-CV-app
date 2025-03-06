@@ -256,6 +256,16 @@ aside {
   grid-template-rows: 1fr; /* Expand content */
 }
 
+.clr-preview {
+  right: 7px;
+  position: absolute;
+  height: 1rem;
+  width: 1rem;
+  padding: 0 !important;
+  border: none;
+  border-radius: 4px;
+}
+
 /**/
 
 .logo {
@@ -266,7 +276,7 @@ aside {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 2em #60d9fbaa);
 }
 
 @keyframes logo-spin {

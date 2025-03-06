@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-export default function Aside() {
+export default function Aside({ cvData, setCvData }) {
   const [activeTab, setActiveTab] = useState("general");
-
+  console.log("aside", cvData);
   return (
     <aside>
       <div>
@@ -21,7 +21,7 @@ export default function Aside() {
                 </select>
               </label>
               <label>
-                primary font type:
+                primary font style:
                 <select>
                   <option value="classic">classic</option>
                   <option value="neutral">neutral</option>
@@ -30,7 +30,7 @@ export default function Aside() {
                 </select>
               </label>
               <label>
-                secondary font type:
+                secondary font style:
                 <select>
                   <option value="classic">classic</option>
                   <option value="neutral">neutral</option>
@@ -41,66 +41,78 @@ export default function Aside() {
               <label>
                 primary font color:
                 <select>
-                  <option value="classic">vantablack</option>
-                  <option value="elegant">pure snow</option>
-                  <option value="neutral">charcoal </option>
-                  <option value="elegant">buttermilk</option>
-                  <option value="modern">indigo blue</option>
-                  <option value="elegant">suit blue</option>
-                  <option value="elegant">auburn red</option>
-                  <option value="elegant">executive red</option>
-                  <option value="elegant">forest green</option>
-                  <option value="elegant">lush neon</option>
+                  <option value="#000000">vantablack</option>
+                  <option value="#ffffff">pure snow</option>
+                  <option value="#1f1f1f">charcoal </option>
+                  <option value="#f7f7f7">buttermilk</option>
+                  <option value="#002344">indigo blue</option>
+                  <option value="#2190f8">suit blue</option>
+                  <option value="#441300">auburn red</option>
+                  <option value="#f82121">executive red</option>
+                  <option value="#004406">forest green</option>
+                  <option value="#65f821">lush neon</option>
                 </select>
-                <div className="clr-preview"></div>
+                <div
+                  style={{ backgroundColor: cvData.styles.primaryFontClr }}
+                  className="clr-preview"
+                ></div>
               </label>
               <label>
-                secondary font type:
+                secondary font color:
                 <select>
-                  <option value="classic">vantablack</option>
-                  <option value="elegant">pure snow</option>
-                  <option value="neutral">charcoal</option>
-                  <option value="elegant">buttermilk</option>
-                  <option value="modern">indigo blue</option>
-                  <option value="elegant">suit blue</option>
-                  <option value="elegant">auburn red</option>
-                  <option value="elegant">executive red</option>
-                  <option value="elegant">forest green</option>
-                  <option value="elegant">lush neon</option>
+                  <option value="#000000">vantablack</option>
+                  <option value="#ffffff">pure snow</option>
+                  <option value="#1f1f1f">charcoal </option>
+                  <option value="#f7f7f7">buttermilk</option>
+                  <option value="#002344">indigo blue</option>
+                  <option value="#2190f8">suit blue</option>
+                  <option value="#441300">auburn red</option>
+                  <option value="#f82121">executive red</option>
+                  <option value="#004406">forest green</option>
+                  <option value="#65f821">lush neon</option>
                 </select>
-                <div className="clr-preview"></div>
+                <div
+                  style={{ backgroundColor: cvData.styles.secondaryFontClr }}
+                  className="clr-preview"
+                ></div>
               </label>
               <label>
                 primary page color:
                 <select>
-                  <option value="classic">vantablack</option>
-                  <option value="elegant">pure snow</option>
-                  <option value="neutral">charcoal</option>
-                  <option value="elegant">buttermilk</option>
-                  <option value="modern">indigo blue</option>
-                  <option value="elegant">suit blue</option>
-                  <option value="elegant">auburn red</option>
-                  <option value="elegant">executive red</option>
-                  <option value="elegant">forest green</option>
-                  <option value="elegant">lush neon</option>
+                  <option value="#000000">vantablack</option>
+                  <option value="#ffffff">pure snow</option>
+                  <option value="#1f1f1f">charcoal </option>
+                  <option value="#f7f7f7">buttermilk</option>
+                  <option value="#002344">indigo blue</option>
+                  <option value="#2190f8">suit blue</option>
+                  <option value="#441300">auburn red</option>
+                  <option value="#f82121">executive red</option>
+                  <option value="#004406">forest green</option>
+                  <option value="#65f821">lush neon</option>
                 </select>
-                <div className="clr-preview"></div>
+                <div
+                  style={{ backgroundColor: cvData.styles.primaryClr }}
+                  className="clr-preview"
+                ></div>
               </label>
               <label>
                 accent page color:
                 <select>
-                  <option value="classic">vantablack</option>
-                  <option value="elegant">pure snow</option>
-                  <option value="neutral">charcoal</option>
-                  <option value="elegant">buttermilk</option>
-                  <option value="modern">indigo blue</option>
-                  <option value="elegant">suit blue</option>
-                  <option value="elegant">auburn red</option>
-                  <option value="elegant">executive red</option>
-                  <option value="elegant">forest green</option>
-                  <option value="elegant">lush neon</option>
+                  <option value="#000000">vantablack</option>
+                  <option value="#ffffff">pure snow</option>
+                  <option value="#1f1f1f">charcoal </option>
+                  <option value="#f7f7f7">buttermilk</option>
+                  <option value="#002344">indigo blue</option>
+                  <option value="#2190f8">suit blue</option>
+                  <option value="#441300">auburn red</option>
+                  <option value="#f82121">executive red</option>
+                  <option value="#004406">forest green</option>
+                  <option value="#65f821">lush neon</option>
                 </select>
-                <div className="clr-preview"></div>
+                <div
+                  style={{ backgroundColor: cvData.styles.accentClr }}
+                  className="clr-preview"
+                ></div>
               </label>
             </div>
           </div>

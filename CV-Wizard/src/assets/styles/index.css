@@ -117,14 +117,3 @@ select {
 option {
   color: var(--btn-clr);
 }
-
-.clr-preview {
-  right: 10px;
-  position: absolute;
-  height: 1rem;
-  width: 1rem;
-  padding: 0 !important;
-  background-color: rgb(255, 0, 0);
-  border: none;
-  border-radius: 4px;
-}
