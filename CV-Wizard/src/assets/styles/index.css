@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -12,27 +15,33 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-}
-
-#root {
   color: hsl(208, 37%, 20%);
   background-color: hsl(0, 0%, 100%);
 
+  --header-bg: hsl(0, 0%, 100%);
   --link-clr: hsl(176, 64%, 46%);
   --link-clr-hover: hsl(176, 64%, 50%);
   --btn-bg: hsl(0, 0%, 98%);
   --btn-clr: hsl(208, 37%, 20%);
   --border: rgba(128, 128, 128, 0.14);
+  transition: background-color 0.2s ease;
 }
-#root.dark {
+
+body.dark {
   color: hsla(0, 0%, 100%, 0.87);
   background-color: hsl(0, 0%, 14%);
 
-  --link-clr: hsl(237, 100%, 75%);
+  --header-bg: hsl(0, 0%, 14%);
+
+  --link-clr: hsl(0, 0%, 85%);
   --link-clr-hover: hsl(237, 86%, 64%);
   --btn-bg: hsl(0, 0%, 24%);
   --btn-clr: hsl(0, 0%, 98%);
   --border: rgba(255, 255, 255, 0.14);
+}
+
+p {
+  margin: 0;
 }
 
 ul {
@@ -53,7 +62,13 @@ h1 {
   line-height: 1.1;
 }
 
-button {
+.aBtn {
+  all: unset;
+  appearance: "button";
+}
+
+button,
+.aBtn {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -65,10 +80,51 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: var(--link-clr);
+button:hover,
+.aBtn:hover {
+  border-color: var(--link-clr-hover);
 }
 button:focus,
-button:focus-visible {
+button:focus-visible,
+.aBtn:focus,
+.aBtn:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-block: 0.5rem;
+  position: relative;
+}
+
+select {
+  appearance: none; /* Removes default styling */
+  -webkit-appearance: none; /* Safari */
+  -moz-appearance: none; /* Firefox */
+  background-color: var(--btn-bg);
+  border: 1px solid var(--link-clr-hover);
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: var(--btn-clr);
+}
+
+option {
+  color: var(--btn-clr);
+}
+
+.clr-preview {
+  right: 10px;
+  position: absolute;
+  height: 1rem;
+  width: 1rem;
+  padding: 0 !important;
+  background-color: rgb(255, 0, 0);
+  border: none;
+  border-radius: 4px;
 }

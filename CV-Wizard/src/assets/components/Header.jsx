@@ -1,35 +1,18 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-export default function Header({ username, logged }) {
-  const [hasDraft, setHasDraft] = useState(false);
+export default function Header({ username, logged, hasDraft, startNewCanvas }) {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "auto");
 
-  // draft state
-  useEffect(() => {
-    setHasDraft(!!localStorage.getItem("cvDraft"));
-  }, []);
-
-  function resumeDraft() {
-    if (hasDraft) window.location.href = "/builder";
-  }
-
-  function startNewCanvas() {
-    if (localStorage.getItem("cvDraft")) {
-      const confirmDelete = window.confirm("You have a draft. Start a new CV?");
-      if (!confirmDelete) return;
-    }
-    window.location.href = "/builder?new=true";
-  }
-  // dark/ light mode
   useEffect(() => {
     if (theme === "auto") {
       window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? document.getElementById("root").classList.add("dark")
-        : document.getElementById("root").classList.remove("dark");
+        ? document.body.classList.add("dark")
+        : document.body.classList.remove("dark");
     } else if (theme === "light") {
-      document.getElementById("root").classList.remove("dark");
+      document.body.classList.remove("dark");
     } else if (theme === "dark") {
-      document.getElementById("root").classList.add("dark");
+      document.body.classList.add("dark");
     }
     localStorage.setItem("theme", theme);
   }, [theme]);
@@ -43,7 +26,7 @@ export default function Header({ username, logged }) {
   return (
     <header>
       <div>
-        <a href="/">CV wizard</a>
+        <Link to="/">CV wizard</Link>
       </div>
       <nav>
         <ul>
@@ -51,19 +34,19 @@ export default function Header({ username, logged }) {
             <>
               <li>Welcome back, {username || "User"}</li>
               <li>
-                <a href="/dashboard">Dashboard</a>
+                <Link to="/dashboard">Dashboard</Link>
               </li>
               <li>
-                <a href="/logout">Log out</a>
+                <Link to="/logout">Log out</Link>
               </li>
             </>
           ) : (
             <>
               <li>
-                <a href="/login">Sign in</a>
+                <Link to="/login">Sign in</Link>
               </li>
               <li>
-                <a href="/signup">Sign up</a>
+                <Link to="/signup">Sign up</Link>
               </li>
             </>
           )}
@@ -72,7 +55,9 @@ export default function Header({ username, logged }) {
           </li>
           {hasDraft && (
             <li>
-              <button onClick={resumeDraft}>Resume Last Draft</button>
+              <Link className="aBtn" to="/builder">
+                Resume Last Draft
+              </Link>
             </li>
           )}
         </ul>

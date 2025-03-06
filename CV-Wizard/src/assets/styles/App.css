@@ -1,12 +1,24 @@
 #root {
-  width: min(100%, 1280px);
+  width: min(100%, 1440px);
   margin: auto;
-  padding-inline: 1rem;
+  display: flex;
+  flex-direction: column;
+  outline: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+#root:has(.hero) {
+  header {
+    border-bottom: 1px solid transparent;
+    margin-bottom: 8vh;
+  }
 }
 
 header {
+  background-color: var(--header-bg);
+  padding-inline: 1rem;
   position: sticky;
-  width: 100%;
   top: 0;
   margin-bottom: 2rem;
   display: flex;
@@ -29,10 +41,224 @@ header {
     gap: 1.5rem;
   }
 }
+.page-wrapper {
+  margin-bottom: auto;
+}
+
+footer {
+  background-color: var(--btn-bg);
+  border-top: 1px solid var(--border);
+  color: #888;
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem;
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  div:nth-of-type(1) {
+    align-items: start;
+    p {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    a {
+      opacity: 0.9;
+      transition: transform 0.25s;
+    }
+    a:hover {
+      transform: translateY(-10%);
+    }
+  }
+
+  div:nth-of-type(2) {
+    align-items: center;
+  }
+  div:nth-of-type(3) {
+    align-items: end;
+  }
+
+  div:nth-of-type(2),
+  div:nth-of-type(3) {
+    a {
+      position: relative;
+    }
+    a::after,
+    a::before {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      height: 3px;
+      width: 0%;
+      background-color: var(--border);
+      transition: width 0.2s ease;
+    }
+    a::after {
+      left: 50%;
+    }
+    a::before {
+      right: 50%;
+    }
+
+    a:hover::after,
+    a:hover::before {
+      width: 50%;
+    }
+  }
+}
+/*-------------------------------- main page --------------------------------*/
+/*section 1*/
+.hero {
+  text-align: center;
+  margin-bottom: 12vh;
+  h1 {
+    font-size: 6em;
+    letter-spacing: 5px;
+    margin-bottom: 4vh;
+  }
+  p {
+    font-size: 1.5em;
+    margin-bottom: 5vh;
+    letter-spacing: 2px;
+    font-weight: 300;
+  }
+  button {
+    padding: 0.5rem 5rem;
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+  }
+}
+p:last-child {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+.shiny-text {
+  --clr: hsla(0, 0%, 29%, 0.643);
+  --gr1: hsla(0, 0%, 0%, 0) 40%;
+  --gr2: rgba(0, 0, 0, 0.8) 50%;
+  --gr3: rgba(0, 0, 0, 0) 60%;
+}
+.dark .shiny-text {
+  --clr: hsla(0, 0%, 71%, 0.643);
+  --gr1: hsla(0, 0%, 100%, 0) 40%;
+  --gr2: rgba(255, 255, 255, 0.8) 50%;
+  --gr3: rgba(255, 255, 255, 0) 60%;
+}
+
+.shiny-text {
+  color: var(--clr);
+  background: linear-gradient(120deg, var(--gr1), var(--gr2), var(--gr3));
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: -100%;
+  }
+}
+/*section 2*/
+.purpose,
+.test {
+  background-color: var(--border);
+  padding: 2rem;
+  padding-bottom: 4rem;
+  h2 {
+    margin-top: 10vh;
+    margin-bottom: 8vh;
+    text-align: center;
+    letter-spacing: 2px;
+    span {
+      color: var(--link-clr-hover);
+    }
+  }
+  h3 {
+    text-align: center;
+    height: 3rem;
+  }
+  > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    > div {
+      width: 20rem;
+      height: 20rem;
+      display: flex;
+      flex-direction: column;
+      div {
+        flex: 1;
+        border: 1px solid var(--link-clr-hover);
+        border-radius: 24px;
+      }
+    }
+  }
+}
+/*section 3*/
+.convert {
+  padding: 4rem 2rem;
+  text-align: center;
+  h3 {
+    margin-block: 3rem;
+  }
+}
+
+/*section 4*/
+.test {
+  margin-bottom: 5rem;
+  p {
+    text-align: center;
+  }
+  div div {
+    background-color: var(--header-bg);
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    height: 14rem;
+    box-shadow: 0px 5px 14px var(--border);
+  }
+}
+/*----------------------------- builder page ----------------------------*/
+
+aside {
+  width: 25rem;
+  height: calc(100vh - 10rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-header {
+  width: 100%;
+  outline: 1px solid var(--border);
+  border-radius: 0;
+}
+
+.tab {
+  display: grid;
+  grid-template-rows: 0fr; /* Start with content collapsed */
+  transition: grid-template-rows 0.25s ease-out;
+  > div {
+    overflow: hidden;
+    div {
+      padding: 1rem;
+    }
+  }
+}
+
+.tab.open {
+  grid-template-rows: 1fr; /* Expand content */
+}
+
+/**/
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
