@@ -1,8 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Aside({ cvData, setCvData }) {
   const [activeTab, setActiveTab] = useState("general");
-  console.log("aside", cvData);
+
+  function handleChange(e, attribute) {
+    setCvData({
+      ...cvData,
+      styles: {
+        ...cvData.styles,
+        [attribute]: event.target.value,
+      },
+    });
+  }
   return (
     <aside>
       <div>
@@ -14,7 +23,10 @@ export default function Aside({ cvData, setCvData }) {
             <div>
               <label>
                 font size:
-                <select>
+                <select
+                  onChange={(e) => handleChange(e, "fontSize")}
+                  value={cvData.styles.fontSize}
+                >
                   <option value="sml">small</option>
                   <option value="med">medium</option>
                   <option value="lrg">large</option>
@@ -22,7 +34,10 @@ export default function Aside({ cvData, setCvData }) {
               </label>
               <label>
                 primary font style:
-                <select>
+                <select
+                  onChange={(e) => handleChange(e, "primaryFontStyle")}
+                  value={cvData.styles.primaryFontStyle}
+                >
                   <option value="classic">classic</option>
                   <option value="neutral">neutral</option>
                   <option value="modern">modern</option>
@@ -31,7 +46,10 @@ export default function Aside({ cvData, setCvData }) {
               </label>
               <label>
                 secondary font style:
-                <select>
+                <select
+                  onChange={(e) => handleChange(e, "secondaryFontStyle")}
+                  value={cvData.styles.secondaryFontStyle}
+                >
                   <option value="classic">classic</option>
                   <option value="neutral">neutral</option>
                   <option value="modern">modern</option>
@@ -40,7 +58,10 @@ export default function Aside({ cvData, setCvData }) {
               </label>
               <label>
                 primary font color:
-                <select>
+                <select
+                  onChange={(e) => handleChange(e, "primaryFontClr")}
+                  value={cvData.styles.primaryFontClr}
+                >
                   <option value="#000000">vantablack</option>
                   <option value="#ffffff">pure snow</option>
                   <option value="#1f1f1f">charcoal </option>
@@ -59,7 +80,10 @@ export default function Aside({ cvData, setCvData }) {
               </label>
               <label>
                 secondary font color:
-                <select>
+                <select
+                  onChange={(e) => handleChange(e, "secondaryFontClr")}
+                  value={cvData.styles.secondaryFontClr}
+                >
                   <option value="#000000">vantablack</option>
                   <option value="#ffffff">pure snow</option>
                   <option value="#1f1f1f">charcoal </option>
@@ -78,7 +102,10 @@ export default function Aside({ cvData, setCvData }) {
               </label>
               <label>
                 primary page color:
-                <select>
+                <select
+                  onChange={(e) => handleChange(e, "primaryClr")}
+                  value={cvData.styles.primaryClr}
+                >
                   <option value="#000000">vantablack</option>
                   <option value="#ffffff">pure snow</option>
                   <option value="#1f1f1f">charcoal </option>
@@ -97,7 +124,10 @@ export default function Aside({ cvData, setCvData }) {
               </label>
               <label>
                 accent page color:
-                <select>
+                <select
+                  onChange={(e) => handleChange(e, "accentClr")}
+                  value={cvData.styles.accentClr}
+                >
                   <option value="#000000">vantablack</option>
                   <option value="#ffffff">pure snow</option>
                   <option value="#1f1f1f">charcoal </option>

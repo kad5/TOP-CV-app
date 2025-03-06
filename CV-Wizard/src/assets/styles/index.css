@@ -109,9 +109,18 @@ select {
   border: 1px solid var(--link-clr-hover);
   border-radius: 5px;
   padding: 8px 12px;
+  padding-right: 30px;
   font-size: 0.8rem;
   cursor: pointer;
   color: var(--btn-clr);
+}
+
+select {
+  background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='16' height='16'><path d='M7 10l5 5 5-5z' fill='%23000'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+  padding-right: 30px; /* Make space for the icon */
 }
 
 option {
