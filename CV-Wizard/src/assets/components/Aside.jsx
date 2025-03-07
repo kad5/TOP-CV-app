@@ -150,7 +150,7 @@ export default function Aside({ cvData, setCvData }) {
       </div>
       <div>
         <button className="tab-header" onClick={() => setActiveTab("header")}>
-          header details
+          CV layout
         </button>
         <div className={activeTab === "header" ? "tab open" : "tab"}>
           <div>
@@ -166,15 +166,15 @@ export default function Aside({ cvData, setCvData }) {
           <div>
             <div>
               <label>
-                Choose a styled CV component:
+                Add a styled CV block:
                 <select>
                   <option value="1">Experience</option>
                   <option value="2">Education</option>
                   <option value="3">Courses</option>
                   <option value="3">Achievements</option>
-                  <option value="3">simple list with a title</option>
-                  <option value="3">paragraph with a title</option>
-                  <option value="3">separator</option>
+                  <option value="3">Custom list</option>
+                  <option value="3">Custom paragraph</option>
+                  <option value="3">Section separator</option>
                 </select>
               </label>
               <div>Content</div>

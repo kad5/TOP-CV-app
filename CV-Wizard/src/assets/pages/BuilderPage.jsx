@@ -27,7 +27,11 @@ export default function BuilderPage({ setHasDraft }) {
   }, [setHasDraft]);
 
   useEffect(() => {
-    localStorage.setItem("cvDraft", JSON.stringify(cvData));
+    const timeout = setTimeout(() => {
+      localStorage.setItem("cvDraft", JSON.stringify(cvData));
+    }, 5000);
+
+    return () => clearTimeout(timeout); // this only runs upon unmount or new instances or use effect (reacts built in cleanup function allows me to only save if the user pause for 5 seconds reducing too many local storage writes when cvdata changes ie with keystokes for example )
   }, [cvData]);
 
   return (

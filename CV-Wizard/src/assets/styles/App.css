@@ -5,7 +5,7 @@
   flex-direction: column;
   outline: 1px solid var(--border);
   border-radius: 16px;
-  overflow: hidden;
+  contain: paint;
 }
 
 #root:has(.hero) {
@@ -16,6 +16,7 @@
 }
 
 header {
+  z-index: 100;
   background-color: var(--header-bg);
   padding-inline: 1rem;
   position: sticky;
