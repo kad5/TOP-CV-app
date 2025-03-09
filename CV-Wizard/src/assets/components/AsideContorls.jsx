@@ -1,14 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import useCV from "../utils/context";
 
-export default function Aside({ cvData, setCvData }) {
+export default function Aside() {
   const [activeTab, setActiveTab] = useState("general");
-
+  const { cvData, setCvData } = useCV();
   function handleChange(e, attribute) {
     setCvData({
       ...cvData,
       styles: {
         ...cvData.styles,
-        [attribute]: event.target.value,
+        [attribute]: e.target.value,
       },
     });
   }
@@ -27,9 +28,9 @@ export default function Aside({ cvData, setCvData }) {
                   onChange={(e) => handleChange(e, "fontSize")}
                   value={cvData.styles.fontSize}
                 >
-                  <option value="sml">small</option>
-                  <option value="med">medium</option>
-                  <option value="lrg">large</option>
+                  <option value="12">small</option>
+                  <option value="16">medium</option>
+                  <option value="20">large</option>
                 </select>
               </label>
               <label>
@@ -38,10 +39,10 @@ export default function Aside({ cvData, setCvData }) {
                   onChange={(e) => handleChange(e, "primaryFontStyle")}
                   value={cvData.styles.primaryFontStyle}
                 >
-                  <option value="classic">classic</option>
-                  <option value="neutral">neutral</option>
-                  <option value="modern">modern</option>
-                  <option value="elegant">elegant</option>
+                  <option value="Times New Roman">classic</option>
+                  <option value="Arial">neutral</option>
+                  <option value="system-ui">modern</option>
+                  <option value="DM Sans">elegant</option>
                 </select>
               </label>
               <label>
@@ -50,10 +51,10 @@ export default function Aside({ cvData, setCvData }) {
                   onChange={(e) => handleChange(e, "secondaryFontStyle")}
                   value={cvData.styles.secondaryFontStyle}
                 >
-                  <option value="classic">classic</option>
-                  <option value="neutral">neutral</option>
-                  <option value="modern">modern</option>
-                  <option value="elegant">elegant</option>
+                  <option value="Times New Roman">classic</option>
+                  <option value="Arial">neutral</option>
+                  <option value="system-ui">modern</option>
+                  <option value="DM Sans">elegant</option>
                 </select>
               </label>
               <label>

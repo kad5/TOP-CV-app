@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { blankCV } from "../utils/draft";
-import Aside from "../components/Aside";
+import Aside from "../components/AsideContorls";
+import Page from "../components/Page";
+import { CVContext } from "../utils/context";
 
 export default function BuilderPage({ setHasDraft }) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -29,14 +31,17 @@ export default function BuilderPage({ setHasDraft }) {
   useEffect(() => {
     const timeout = setTimeout(() => {
       localStorage.setItem("cvDraft", JSON.stringify(cvData));
-    }, 5000);
+    }, 2500);
 
     return () => clearTimeout(timeout); // this only runs upon unmount or new instances or use effect (reacts built in cleanup function allows me to only save if the user pause for 5 seconds reducing too many local storage writes when cvdata changes ie with keystokes for example )
   }, [cvData]);
 
   return (
-    <>
-      <Aside cvData={cvData} setCvData={setCvData}></Aside>
-    </>
+    <CVContext.Provider value={{ cvData, setCvData }}>
+      <main className="builder">
+        <Aside />
+        <Page type={cvData.header.layout} />
+      </main>
+    </CVContext.Provider>
   );
 }

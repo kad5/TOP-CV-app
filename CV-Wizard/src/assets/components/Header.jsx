@@ -26,7 +26,7 @@ export default function Header({ username, logged, hasDraft, startNewCanvas }) {
   return (
     <header>
       <div>
-        <Link to="/">CV wizard</Link>
+        <Link to="/">CV Simple</Link>
       </div>
       <nav>
         <ul>
