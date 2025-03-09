@@ -2,8 +2,12 @@ import useCV from "../utils/context";
 import { setNestedValue } from "../utils/setCV";
 
 export default function CvBody({ body }) {
+  const { cvData } = useCV();
   return (
-    <div className="cv-body">
+    <div
+      className="cv-body"
+      style={{ backgroundColor: cvData.styles.accentClr }}
+    >
       {body.map((comp, compIndex) => (
         <CVComponent key={compIndex} data={comp} />
       ))}

@@ -2,25 +2,31 @@ import useCV from "../utils/context";
 import Input from "./InputField";
 
 export default function CvHeader({ type = "" }) {
-  const { cvData, setCvData } = useCV();
+  const { cvData } = useCV();
   return (
-    <div className={`cv-header ${type}`}>
+    <div
+      style={{ backgroundColor: cvData.styles.primaryClr }}
+      className={`cv-header ${type}`}
+    >
       <div className="name-title">
         <Input
           className={"h-name"}
           keys={["header", "name"]}
           init={cvData.header.name}
+          primary={true}
         />
         <Input
           className={"h-titleLetters"}
           keys={["header", "titleLetters"]}
           init={cvData.header.titleLetters}
+          primary={true}
         />
       </div>
       <Input
         className={"h-jobTitle"}
         keys={["header", "jobTitle"]}
         init={cvData.header.jobTitle}
+        primary={true}
       />
       <Input
         className={"h-email1"}

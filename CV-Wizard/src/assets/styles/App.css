@@ -281,11 +281,11 @@ aside {
   width: 210mm;
   height: 297mm;
   overflow: hidden;
-  background-color: #888;
+  background-color: hsl(0, 0%, 97%);
+  border: 1px solid var(--border);
   margin-bottom: 2rem;
   transform: scale(1);
   transform-origin: top center;
-  padding: 5mm;
 }
 
 .horizontal {
@@ -295,7 +295,7 @@ aside {
 
 .vertical {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: auto 1fr;
 }
 
 .inp-wrapper {
@@ -338,9 +338,9 @@ aside {
 }
 /*  ---------  header styles ---------- */
 
+/*horizontal header styles*/
 .horizontal .name-title {
   display: flex;
-  margin: auto;
   gap: 3mm;
   > div {
     width: fit-content;
@@ -350,57 +350,7 @@ aside {
   }
 }
 
-.horizontal .h-customList1Title {
-  display: none;
-}
-.horizontal .h-customList1Content {
-  display: none;
-}
-.horizontal .h-customList2Title {
-  display: none;
-}
-.horizontal .h-customList2Content {
-  display: none;
-}
-.horizontal .h-customPara1Title {
-  display: none;
-}
-.horizontal .h-customPara1Content {
-  display: none;
-}
-.horizontal .h-customPara2Title {
-  display: none;
-}
-.horizontal .h-customPara2Content {
-  display: none;
-}
-
-/*basic horizontal style*/
-.cv-header.standard-h {
-  border-bottom: 1px solid black;
-  padding-bottom: 2mm;
-  display: grid;
-  grid-template: repeat(5, fit-content) / repeat(2, 105mm);
-  grid-template-areas:
-    "name-title name-title"
-    "h-jobTitle h-jobTitle"
-    "h-email1  h-phone1"
-    "h-email2  h-phone2"
-    "h-address  h-workAddress";
-  .name-title {
-    grid-area: name-title;
-    font-size: 1.75em;
-    .h-titleLetters {
-      font-size: 0.75em;
-      align-self: flex-end;
-    }
-  }
-  .h-jobTitle {
-    grid-area: h-jobTitle;
-    justify-self: center;
-    font-size: 1.1em;
-    margin-bottom: 5mm;
-  }
+.horizontal {
   .h-email1 {
     grid-area: h-email1;
   }
@@ -424,26 +374,223 @@ aside {
   }
   .h-customList1Title {
     grid-area: h-customList1Title;
+    display: none;
   }
   .h-customList1Content {
     grid-area: h-customList1Content;
+    display: none;
   }
   .h-customList2Title {
     grid-area: h-customList2Title;
+    display: none;
   }
   .h-customList2Content {
     grid-area: h-customList2Content;
+    display: none;
   }
   .h-customPara1Title {
     grid-area: h-customPara1Title;
+    display: none;
   }
   .h-customPara1Content {
     grid-area: h-customPara1Content;
+    display: none;
   }
   .h-customPara2Title {
     grid-area: h-customPara2Title;
+    display: none;
   }
   .h-customPara2Content {
     grid-area: h-customPara2Content;
+    display: none;
+  }
+}
+
+.cv-header.standard-h {
+  padding: 5mm;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.274);
+  padding-bottom: 2mm;
+  display: grid;
+  grid-template: repeat(5, minmax(0, fit-content)) / repeat(2, 105mm);
+  grid-template-areas:
+    "name-title name-title"
+    "h-jobTitle h-jobTitle"
+    "h-email1  h-phone1"
+    "h-email2  h-phone2"
+    "h-address  h-workAddress";
+  .name-title {
+    margin: auto;
+    grid-area: name-title;
+    font-size: 1.75em;
+    .h-titleLetters {
+      font-size: 0.75em;
+      align-self: flex-end;
+    }
+  }
+  .h-jobTitle {
+    grid-area: h-jobTitle;
+    justify-self: center;
+    font-size: 1.1em;
+    margin-bottom: 5mm;
+  }
+}
+
+.cv-header.fancy-h {
+  padding: 5mm;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.274);
+  padding-bottom: 2mm;
+  display: grid;
+  grid-template: repeat(5, minmax(0, fit-content)) / repeat(2, 105mm);
+  grid-template-areas:
+    "name-title name-title"
+    "h-jobTitle h-jobTitle"
+    "h-email1  h-phone1"
+    "h-email2  h-phone2"
+    "h-address  h-workAddress";
+  .name-title {
+    grid-area: name-title;
+    font-size: 1.75em;
+    .h-titleLetters {
+      font-size: 0.75em;
+      align-self: flex-end;
+    }
+  }
+  .h-jobTitle {
+    grid-area: h-jobTitle;
+    font-size: 1em;
+    margin-top: -2mm;
+    margin-bottom: 5mm;
+    font-style: italic;
+  }
+}
+
+/*vertical header styles */
+.cv-header.standard-v {
+  padding: 5mm;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  .name-title {
+    grid-area: name-title;
+    font-size: 1.75em;
+    .h-titleLetters {
+      font-size: 0.75em;
+      align-self: flex-end;
+    }
+  }
+  .h-jobTitle {
+    grid-area: h-jobTitle;
+    font-size: 1.1em;
+    margin-bottom: 5mm;
+  }
+}
+
+.vertical .name-title {
+  display: flex;
+  gap: 3mm;
+  > div {
+    width: fit-content;
+  }
+  input {
+    width: fit-content;
+  }
+}
+
+.vertical {
+  .h-email1 {
+    grid-area: h-email1;
+  }
+  .h-email1::before {
+    content: "\f0e0";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 4px;
+    transform: translateY(2px);
+  }
+  .h-email2 {
+    grid-area: h-email2;
+  }
+  .h-email2::before {
+    content: "\f0e0";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 4px;
+    transform: translateY(2px);
+  }
+  .h-phone1 {
+    grid-area: h-phone1;
+  }
+  .h-phone1::before {
+    content: "\f095";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 4px;
+    transform: translateY(2px);
+  }
+  .h-phone2 {
+    grid-area: h-phone2;
+  }
+  .h-phone2::before {
+    content: "\f095";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 4px;
+    transform: translateY(2px);
+  }
+  .h-address {
+    grid-area: h-address;
+  }
+  .h-address::before {
+    content: "\f3c5";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 4px;
+    transform: translateY(2px);
+  }
+  .h-workAddress {
+    grid-area: h-workAddress;
+  }
+  .h-workAddress::before {
+    content: "\f3c5";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 4px;
+    transform: translateY(2px);
+  }
+  .h-customList1Title {
+    grid-area: h-customList1Title;
+    margin-top: 20mm;
+  }
+  .h-customList1Content {
+    grid-area: h-customList1Content;
+    margin-top: 3mm;
+    max-width: 200px;
+  }
+  .h-customList2Title {
+    grid-area: h-customList2Title;
+    margin-top: 20mm;
+  }
+  .h-customList2Content {
+    grid-area: h-customList2Content;
+    margin-top: 3mm;
+    max-width: 200px;
+  }
+  .h-customPara1Title {
+    grid-area: h-customPara1Title;
+    margin-top: 20mm;
+  }
+  .h-customPara1Content {
+    grid-area: h-customPara1Content;
+    margin-top: 3mm;
+    max-width: 200px;
+  }
+  .h-customPara2Title {
+    grid-area: h-customPara2Title;
+    margin-top: 20mm;
+  }
+  .h-customPara2Content {
+    grid-area: h-customPara2Content;
+    margin-top: 3mm;
+    max-width: 200px;
   }
 }

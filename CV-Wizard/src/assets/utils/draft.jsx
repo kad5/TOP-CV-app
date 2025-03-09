@@ -14,8 +14,8 @@ export function blankCV() {
       accentClr: "#441300",
     },
     header: {
-      layout: "horizontal",
-      template: "standard-h",
+      layout: "vertical",
+      template: "standard-v",
       name: "John Doe",
       titleLetters: "PhD",
       jobTitle: "General Manager",
