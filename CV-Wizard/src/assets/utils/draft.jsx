@@ -26,7 +26,7 @@ export function blankCV() {
       address: "205 - 3 My building block - My city",
       workAddress: "My Workplace - My city",
       customList1Title: "my list 1",
-      customList1Content: [],
+      customList1Content: ["new list item1"],
       customList2Title: "my list 2",
       customList2Content: [],
       customPara1Title: "my brief 1",
@@ -55,7 +55,7 @@ export function listItem() {
     title: null, // the job title
     subtitle: null, // the date
     summary: null,
-    body: [], // if they want an array of li strings
+    body: [{ id, content }], // if they want an array of li strings
   };
 }
 

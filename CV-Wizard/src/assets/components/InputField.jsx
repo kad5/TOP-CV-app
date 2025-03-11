@@ -2,12 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import useCV from "../utils/context";
 import { setNestedValue } from "../utils/setCV";
 
-export default function EditableSpan({
-  className,
-  keys,
-  init,
-  primary = false,
-}) {
+export default function Input({ className, keys, init, primary = false }) {
   const [value, setValue] = useState(init);
   const [oldValue, setOldValue] = useState(init);
   const [isActive, setIsActive] = useState(false);
@@ -15,7 +10,6 @@ export default function EditableSpan({
   const spanRef = useRef(null);
   const isInitialRender = useRef(true);
 
-  // Only update the span content when toggling edit mode
   useEffect(() => {
     if (!isInitialRender.current && spanRef.current) {
       if (isActive) {
@@ -31,7 +25,6 @@ export default function EditableSpan({
 
   function enableEdit() {
     setIsActive(true);
-    // Focus happens after state update
     setTimeout(() => {
       if (spanRef.current) {
         spanRef.current.focus();
@@ -54,7 +47,6 @@ export default function EditableSpan({
     setIsActive(false);
   }
 
-  // Handle key presses
   function handleKeyDown(e) {
     if (e.key === "Enter") {
       e.preventDefault();

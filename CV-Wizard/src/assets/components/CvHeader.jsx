@@ -1,5 +1,7 @@
 import useCV from "../utils/context";
-import Input from "./InputField";
+import Para from "./Para";
+import EditableList from "./List";
+import Rows from "./Rows";
 
 export default function CvHeader({ type = "" }) {
   const { cvData } = useCV();
@@ -9,91 +11,93 @@ export default function CvHeader({ type = "" }) {
       className={`cv-header ${type}`}
     >
       <div className="name-title">
-        <Input
+        <Para
           className={"h-name"}
           keys={["header", "name"]}
           init={cvData.header.name}
           primary={true}
         />
-        <Input
+        <Para
           className={"h-titleLetters"}
           keys={["header", "titleLetters"]}
           init={cvData.header.titleLetters}
           primary={true}
         />
       </div>
-      <Input
+      <Para
         className={"h-jobTitle"}
         keys={["header", "jobTitle"]}
         init={cvData.header.jobTitle}
         primary={true}
       />
-      <Input
+      <Para
         className={"h-email1"}
         keys={["header", "email1"]}
         init={cvData.header.email1}
       />
-      <Input
+      <Para
         className={"h-email2"}
         keys={["header", "email2"]}
         init={cvData.header.email2}
       />
-      <Input
+      <Para
         className={"h-phone1"}
         keys={["header", "phone1"]}
         init={cvData.header.phone1}
       />
-      <Input
+      <Para
         className={"h-phone2"}
         keys={["header", "phone2"]}
         init={cvData.header.phone2}
       />
-      <Input
+      <Para
         className={"h-address"}
         keys={["header", "address"]}
         init={cvData.header.address}
       />
-      <Input
+      <Para
         className={"h-workAddress"}
         keys={["header", "workAddress"]}
         init={cvData.header.workAddress}
       />
-      <Input
+      <Para
         className={"h-customList1Title"}
         keys={["header", "customList1Title"]}
         init={cvData.header.customList1Title}
       />
-      <Input
-        className={"h-customList1Content"}
+      <Rows
+        className="h-list"
         keys={["header", "customList1Content"]}
-        init={cvData.header.customList1Content}
-      />
-      <Input
+        list={cvData.header.customList1Content}
+        Keys={["header", "customList1Content"]}
+      ></Rows>
+      <Para
         className={"h-customList2Title"}
         keys={["header", "customList2Title"]}
         init={cvData.header.customList2Title}
       />
-      <Input
-        className={"h-customList2Content"}
+      <Rows
+        className="h-list"
         keys={["header", "customList2Content"]}
-        init={cvData.header.customList2Content}
-      />
-      <Input
+        list={cvData.header.customList2Content}
+        Keys={["header", "customList2Content"]}
+      ></Rows>
+      <Para
         className={"h-customPara1Title"}
         keys={["header", "customPara1Title"]}
         init={cvData.header.customPara1Title}
       />
-      <Input
+      <Para
         className={"h-customPara1Content"}
         keys={["header", "customPara1Content"]}
         init={cvData.header.customPara1Content}
       />
-      <Input
+      <Para
         className={"h-customPara2Title"}
         keys={["header", "customPara2Title"]}
         init={cvData.header.customPara2Title}
       />
-      <Input
+      <Para
         className={"h-customPara2Content"}
         keys={["header", "customPara2Content"]}
         init={cvData.header.customPara2Content}
