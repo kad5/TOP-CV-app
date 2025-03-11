@@ -351,6 +351,9 @@ aside {
 }
 
 .horizontal {
+  .h-list {
+    display: none !important;
+  }
   .h-email1 {
     grid-area: h-email1;
   }
@@ -506,6 +509,44 @@ aside {
   }
 }
 
+.cv-header.fancy-v {
+  padding: 5mm;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  .name-title {
+    align-self: center;
+    grid-area: name-title;
+    font-size: 2em;
+    .h-titleLetters {
+      font-size: 0.75em;
+      align-self: flex-end;
+    }
+  }
+  .h-jobTitle {
+    grid-area: h-jobTitle;
+    font-size: 1.1em;
+    margin-bottom: 5mm;
+    align-self: center;
+  }
+  .h-customList1Title,
+  .h-customList2Title,
+  .h-customPara1Title,
+  .h-customPara2Title {
+    font-size: 1.2em;
+    font-weight: 600;
+  }
+  .h-workAddress,
+  .h-customList2Title,
+  .h-customPara2Title,
+  .h-customPara2Content {
+    display: none;
+  }
+}
+.cv-header.fancy-v .h-list.customList2Content {
+  display: none !important;
+}
+
 .vertical .name-title {
   display: flex;
   gap: 3mm;
@@ -598,7 +639,7 @@ aside {
   }
   .h-customPara1Title {
     grid-area: h-customPara1Title;
-    margin-top: 20mm;
+    margin-top: 15mm;
   }
   .h-customPara1Content {
     grid-area: h-customPara1Content;

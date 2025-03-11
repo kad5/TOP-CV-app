@@ -13,6 +13,83 @@ export default function Aside() {
       },
     });
   }
+  function chooseLayout(value) {
+    console.log(value);
+    if (value === "standard-h") {
+      setCvData({
+        ...cvData,
+        styles: {
+          ...cvData.styles,
+          primaryClr: "#f7f7f7",
+          accentClr: "#ffffff",
+          primaryFontClr: "#000000",
+          secondaryFontClr: "#1f1f1f",
+        },
+        header: {
+          ...cvData.header,
+          layout: "horizontal",
+          template: "standard-h",
+        },
+      });
+    }
+    if (value === "fancy-h") {
+      setCvData({
+        ...cvData,
+        styles: {
+          ...cvData.styles,
+          primaryClr: "#1f1f1f",
+          accentClr: "#f7f7f7",
+          primaryFontClr: "#f7f7f7",
+          secondaryFontClr: "#f7f7f7",
+        },
+        header: {
+          ...cvData.header,
+          layout: "horizontal",
+          template: "fancy-h",
+        },
+      });
+    }
+    if (value === "standard-v") {
+      setCvData({
+        ...cvData,
+        styles: {
+          ...cvData.styles,
+          primaryClr: "#2190f8",
+          accentClr: "#f7f7f7",
+          primaryFontClr: "#f7f7f7",
+          secondaryFontClr: "#f7f7f7",
+        },
+        header: {
+          ...cvData.header,
+          layout: "vertical",
+          template: "standard-v",
+        },
+      });
+    }
+    if (value === "fancy-v") {
+      setCvData({
+        ...cvData,
+        styles: {
+          ...cvData.styles,
+          primaryClr: "#441300",
+          accentClr: "#f7f7f7",
+          primaryFontClr: "#f7f7f7",
+          secondaryFontClr: "#f7f7f7",
+        },
+        header: {
+          ...cvData.header,
+          layout: "vertical",
+          template: "fancy-v",
+        },
+      });
+    }
+  }
+  function translateValue() {
+    if (cvData.header.template === "standard-h") return "standard-h";
+    if (cvData.header.template === "fancy-h") return "fancy-h";
+    if (cvData.header.template === "standard-v") return "standard-v";
+    if (cvData.header.template === "fancy-v") return "fancy-v";
+  }
   return (
     <aside>
       <div>
@@ -155,7 +232,20 @@ export default function Aside() {
         </button>
         <div className={activeTab === "header" ? "tab open" : "tab"}>
           <div>
-            <div></div>
+            <div>
+              <label>
+                Select page layout
+                <select
+                  value={translateValue()}
+                  onChange={(e) => chooseLayout(e.target.value)}
+                >
+                  <option value="standard-h">Standard</option>
+                  <option value="fancy-h">Stramlined</option>
+                  <option value="standard-v">Detailed</option>
+                  <option value="fancy-v">Modern</option>
+                </select>
+              </label>
+            </div>
           </div>
         </div>
       </div>

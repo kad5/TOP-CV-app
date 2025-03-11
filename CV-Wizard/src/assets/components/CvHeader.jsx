@@ -66,7 +66,7 @@ export default function CvHeader({ type = "" }) {
         init={cvData.header.customList1Title}
       />
       <Rows
-        className="h-list"
+        className="h-list customList1Content"
         keys={["header", "customList1Content"]}
         list={cvData.header.customList1Content}
         Keys={["header", "customList1Content"]}
@@ -77,7 +77,7 @@ export default function CvHeader({ type = "" }) {
         init={cvData.header.customList2Title}
       />
       <Rows
-        className="h-list"
+        className="h-list customList2Content"
         keys={["header", "customList2Content"]}
         list={cvData.header.customList2Content}
         Keys={["header", "customList2Content"]}
