@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useCV from "../utils/context";
-import { listItem, cvComponent } from "../utils/draft";
+import { cvComponent } from "../utils/draft";
 
 export default function Aside() {
   const [activeTab, setActiveTab] = useState("header");
@@ -91,11 +91,24 @@ export default function Aside() {
     if (cvData.header.template === "standard-v") return "standard-v";
     if (cvData.header.template === "fancy-v") return "fancy-v";
   }
+  function addNewBlock(type, mode, title) {
+    const newBlock = cvComponent(type, mode, title);
+    setCvData({
+      ...cvData,
+      body: [...cvData.body, newBlock],
+    });
+  }
+  function addSep() {
+    setCvData({
+      ...cvData,
+      body: [...cvData.body, "separator-block"],
+    });
+  }
   return (
     <aside>
       <div>
         <button className="tab-header" onClick={() => setActiveTab("header")}>
-          CV layout
+          Page layout
         </button>
         <div className={activeTab === "header" ? "tab open" : "tab"}>
           <div>
@@ -252,24 +265,54 @@ export default function Aside() {
       </div>
       <div>
         <button className="tab-header" onClick={() => setActiveTab("comps")}>
-          CV components
+          CV blocks
         </button>
         <div className={activeTab === "comps" ? "tab open" : "tab"}>
           <div>
-            <div>
-              <label>
-                Add a styled CV block:
-                <select>
-                  <option value="1">Experience</option>
-                  <option value="2">Education</option>
-                  <option value="3">Courses</option>
-                  <option value="3">Achievements</option>
-                  <option value="3">Custom list</option>
-                  <option value="3">Custom paragraph</option>
-                  <option value="3">Section separator</option>
-                </select>
-              </label>
-              <div>Content</div>
+            <div className="blocks-ctrls">
+              <p>Quick add CV blocks : </p>
+              <button
+                onClick={() => addNewBlock("para", "compact", "About me")}
+              >
+                Personal Statement
+              </button>
+              <button
+                onClick={() => addNewBlock("list", "detailed", "Experience")}
+              >
+                Experience section
+              </button>
+              <button
+                onClick={() => addNewBlock("list", "standard", "Education")}
+              >
+                Education section
+              </button>
+              <button onClick={() => addNewBlock("list", "compact", "Courses")}>
+                Courses section
+              </button>
+              <button
+                onClick={() => addNewBlock("para", "compact", "Achievements")}
+              >
+                Achievements section
+              </button>
+              <button onClick={() => addNewBlock("list", "compact", "Skills")}>
+                Skills section
+              </button>
+              <p>Add a custom CV block : </p>
+              <button
+                onClick={() =>
+                  addNewBlock("para", "standard", "Custom paragraph block")
+                }
+              >
+                Custom paragraph block
+              </button>
+              <button
+                onClick={() =>
+                  addNewBlock("list", "detailed", "Custom list block")
+                }
+              >
+                Custom list container block
+              </button>
+              <button onClick={addSep}>Block separator</button>
             </div>
           </div>
         </div>

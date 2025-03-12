@@ -1,4 +1,4 @@
-import { useState, Fragment } from "react";
+import { Fragment } from "react";
 import useCV from "../utils/context";
 import Rows from "./Rows";
 import Para from "./Para";
@@ -6,7 +6,7 @@ import { setNestedValue } from "../utils/setCV";
 import { listItem } from "../utils/draft";
 
 export default function Block({ parent, obj }) {
-  const { cvData, setCvData } = useCV();
+  const { setCvData } = useCV();
   const themeArray = ["compact", "standard", "detailed"];
   function switchTheme() {
     const currentStyle = themeArray.indexOf(obj.mode);

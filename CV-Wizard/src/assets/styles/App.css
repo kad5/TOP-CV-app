@@ -267,7 +267,24 @@ aside {
   border-radius: 4px;
 }
 
+.blocks-ctrls {
+  display: flex;
+  flex-direction: column;
+  p {
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+}
+
 /*----------------------- builder -------------------------*/
+
+.b-separator {
+  height: 5mm;
+  display: flex;
+  justify-content: center;
+  color: #888;
+}
+
 .builder {
   display: grid;
   grid-template-columns: auto 1fr;

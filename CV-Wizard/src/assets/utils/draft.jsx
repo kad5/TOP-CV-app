@@ -34,86 +34,29 @@ export function blankCV() {
       customPara2Title: "my brief 2",
       customPara2Content: "Short summary of something I want to emphacise",
     },
-    body: [
-      {
-        id: "123123",
-        type: "list", // list vs paragraph
-        mode: "detailed", // compact vs standard vs detailed
-        style: "elegant", // the css class (compact - standard -details)
-        title: "Experience",
-        content: [
-          {
-            id: "1",
-            title: "Job1", // the job title
-            subtitle: "Senior manager", // the date
-            summary: "duga duga", // if they want a paraphraph
-            body: ["dido", "fido", "ara", "bara"], // if they want an array of li strings
-          },
-          {
-            id: "31",
-            title: "Job2", // the job title
-            subtitle: "Assistant Manager", // the date
-            summary: null, // if they want a paraphraph
-            body: ["ara", "bara"], // if they want an array of li strings
-          },
-        ], //listItems objects if type is list
-      },
-      {
-        id: "1223",
-        type: "list", // list vs paragraph
-        mode: "compact", // compact vs standard vs detailed
-        style: "elegant", // the css class (compact - standard -details)
-        title: "Education",
-        content: [
-          {
-            id: "1",
-            title: "Bachelor of Business", // the job title
-            subtitle: "Sigma Uni", // the date
-            summary: "duga duga", // if they want a paraphraph
-            body: ["dido", "fido", "ara", "bara"], // if they want an array of li strings
-          },
-          {
-            id: "31",
-            title: "High School", // the job title
-            subtitle: "Ari High", // the date
-            summary: null, // if they want a paraphraph
-            body: ["ara", "bara"],
-          },
-        ],
-      },
-      {
-        id: "12c3",
-        type: "para", // list vs paragraph
-        mode: "detailed", // compact vs standard vs detailed
-        style: "elegant", // the css class (compact - standard -details)
-        title: "Courses",
-        content: ["asdhajsdasdasd"], //listItems objects if type is list
-      },
-      {
-        id: "133",
-        type: "para", // list vs paragraph
-        mode: "detailed", // compact vs standard vs detailed
-        style: "elegant", // the css class (compact - standard -details)
-        title: "Hobbies",
-        content: [
-          "      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur similique doloremque sint molestiae aliquid, quibusdam eveniet repudiandae laudantium! Recusandae vero aliquid quae animi nemo eligendi nisi tempore veniam odit? Quis.",
-        ], //listItems objects if type is list
-      },
-    ],
+    body: [],
   };
 }
 
 export function cvComponent(
-  type = null,
+  type = "list",
   mode = "detailed",
-  title = "custom block"
+  title = "custom block",
+  liNum = 2
 ) {
+  let arr = [];
+  if (type === "list") {
+    for (let i = 0; i < liNum; i++) {
+      arr.push(listItem());
+    }
+  }
+
   const content =
     type === "para"
       ? [
           "this is a paragraph cv block, you could add here free text describing this cv block, for example a personal statement, a description of a project, or details of an achievement",
         ]
-      : [listItem()];
+      : arr;
   return {
     id: uuidv4(),
     type, // list vs paragraph
@@ -254,3 +197,71 @@ export const testCV = {
     },
   ],
 };
+
+// hard coded body for test
+/*
+      {
+        id: "123123",
+        type: "list", // list vs paragraph
+        mode: "detailed", // compact vs standard vs detailed
+        style: "elegant", // the css class (compact - standard -details)
+        title: "Experience",
+        content: [
+          {
+            id: "1",
+            title: "Job1", // the job title
+            subtitle: "Senior manager", // the date
+            summary: "duga duga", // if they want a paraphraph
+            body: ["dido", "fido", "ara", "bara"], // if they want an array of li strings
+          },
+          {
+            id: "31",
+            title: "Job2", // the job title
+            subtitle: "Assistant Manager", // the date
+            summary: null, // if they want a paraphraph
+            body: ["ara", "bara"], // if they want an array of li strings
+          },
+        ], //listItems objects if type is list
+      },
+      {
+        id: "1223",
+        type: "list", // list vs paragraph
+        mode: "compact", // compact vs standard vs detailed
+        style: "elegant", // the css class (compact - standard -details)
+        title: "Education",
+        content: [
+          {
+            id: "1",
+            title: "Bachelor of Business", // the job title
+            subtitle: "Sigma Uni", // the date
+            summary: "duga duga", // if they want a paraphraph
+            body: ["dido", "fido", "ara", "bara"], // if they want an array of li strings
+          },
+          {
+            id: "31",
+            title: "High School", // the job title
+            subtitle: "Ari High", // the date
+            summary: null, // if they want a paraphraph
+            body: ["ara", "bara"],
+          },
+        ],
+      },
+      {
+        id: "12c3",
+        type: "para", // list vs paragraph
+        mode: "detailed", // compact vs standard vs detailed
+        style: "elegant", // the css class (compact - standard -details)
+        title: "Courses",
+        content: ["asdhajsdasdasd"], //listItems objects if type is list
+      },
+      {
+        id: "133",
+        type: "para", // list vs paragraph
+        mode: "detailed", // compact vs standard vs detailed
+        style: "elegant", // the css class (compact - standard -details)
+        title: "Hobbies",
+        content: [
+          "      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur similique doloremque sint molestiae aliquid, quibusdam eveniet repudiandae laudantium! Recusandae vero aliquid quae animi nemo eligendi nisi tempore veniam odit? Quis.",
+        ], //listItems objects if type is list
+      },
+*/
