@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useCV from "../utils/context";
 import { cvComponent } from "../utils/draft";
 
-export default function Aside() {
+export default function Aside({ setHasDraft }) {
   const [activeTab, setActiveTab] = useState("header");
   const { cvData, setCvData } = useCV();
+  const navigate = useNavigate();
   function handleChange(e, attribute) {
     setCvData({
       ...cvData,
@@ -41,7 +43,7 @@ export default function Aside() {
           primaryClr: "#1f1f1f",
           accentClr: "#f7f7f7",
           primaryFontClr: "#f7f7f7",
-          secondaryFontClr: "#f7f7f7",
+          secondaryFontClr: "#1f1f1f",
         },
         header: {
           ...cvData.header,
@@ -58,7 +60,7 @@ export default function Aside() {
           primaryClr: "#2190f8",
           accentClr: "#f7f7f7",
           primaryFontClr: "#f7f7f7",
-          secondaryFontClr: "#f7f7f7",
+          secondaryFontClr: "#1f1f1f",
         },
         header: {
           ...cvData.header,
@@ -75,7 +77,7 @@ export default function Aside() {
           primaryClr: "#441300",
           accentClr: "#f7f7f7",
           primaryFontClr: "#f7f7f7",
-          secondaryFontClr: "#f7f7f7",
+          secondaryFontClr: "#1f1f1f",
         },
         header: {
           ...cvData.header,
@@ -103,6 +105,15 @@ export default function Aside() {
       ...cvData,
       body: [...cvData.body, "separator-block"],
     });
+  }
+  function preview() {}
+  function save() {
+    //code to send to server
+  }
+  function dlt() {
+    navigate("/");
+    setHasDraft(false);
+    localStorage.removeItem("cvDraft");
   }
   return (
     <aside>
@@ -316,6 +327,11 @@ export default function Aside() {
             </div>
           </div>
         </div>
+      </div>
+      <div className="final-ctrls">
+        <button onClick={preview}>Preview final CV document</button>
+        <button onClick={save}>Save as a draft for later</button>
+        <button onClick={dlt}>I don't like it, delete it</button>
       </div>
     </aside>
   );

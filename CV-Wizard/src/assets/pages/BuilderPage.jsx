@@ -36,7 +36,7 @@ export default function BuilderPage({ setHasDraft }) {
   return (
     <CVContext.Provider value={{ cvData, setCvData }}>
       <main className="builder">
-        <Aside />
+        <Aside setHasDraft={setHasDraft} />
         <Page type={cvData.header.layout} />
       </main>
     </CVContext.Provider>

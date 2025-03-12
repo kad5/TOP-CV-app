@@ -235,6 +235,21 @@ aside {
   flex-direction: column;
 }
 
+.final-ctrls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  button:first-of-type {
+    background-color: rgba(102, 255, 0, 0.63);
+  }
+  button:last-of-type {
+    background-color: rgba(255, 0, 0, 0.63);
+  }
+}
+
 .tab-header {
   width: 100%;
   outline: 1px solid var(--border);
@@ -477,8 +492,9 @@ aside {
   }
   .h-jobTitle {
     grid-area: h-jobTitle;
-    font-size: 1em;
+    font-size: 1.1em;
     margin-top: -2mm;
+    padding-bottom: 2mm;
     margin-bottom: 5mm;
     font-style: italic;
   }
