@@ -16,7 +16,6 @@ export default function BuilderPage({ setHasDraft }) {
   // this fixes a bug that caused the state not to update without an unmounting (page reload), so we force a state reset. Thank you AI
   useEffect(() => {
     if (isNew) {
-      console.log("hihi");
       const newCV = blankCV();
       setCvData(newCV); // resets the state
       localStorage.removeItem("cvDraft");

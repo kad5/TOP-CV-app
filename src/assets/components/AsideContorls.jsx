@@ -19,7 +19,6 @@ export default function Aside({ setHasDraft }) {
     });
   }
   function chooseLayout(value) {
-    console.log(value);
     if (value === "standard-h") {
       setCvData({
         ...cvData,
