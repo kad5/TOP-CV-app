@@ -21,19 +21,19 @@ export default function MainPage({ startNewCanvas }) {
             <h3>
               Step 1: <span>Choose a general template</span>
             </h3>
-            <div>gif imge</div>
+            <div className="img-cont1"></div>
           </div>
           <div>
             <h3>
-              Step 2: <span>Fill it out using our modular CV components</span>
+              Step 2: <span>Fill it out using our modular CV blocks</span>
             </h3>
-            <div>gif imge</div>
+            <div className="img-cont2"></div>
           </div>
           <div>
             <h3>
               Step 3: <span>Download your CV as a pdf</span>
             </h3>
-            <div>gif imge</div>
+            <div className="img-cont3"></div>
           </div>
         </div>
       </section>

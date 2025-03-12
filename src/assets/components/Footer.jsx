@@ -34,7 +34,7 @@ export default function Footer() {
           </a>
         </p>
         <p>
-          CV Wizard <span>© {new Date().getFullYear()}</span>
+          CV Simple <span>© {new Date().getFullYear()}</span>
         </p>
       </div>
       <div>
