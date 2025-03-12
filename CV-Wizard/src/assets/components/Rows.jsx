@@ -23,11 +23,18 @@ export default function Rows({ className, keys, list, primary = null }) {
           return (
             <li key={index}>
               <Para keys={id} init={li} primary={primary} />
-              <button onClick={() => deleteRow(id)}>❌</button>
+              <button
+                className="ctrls-for-delete"
+                onClick={() => deleteRow(id)}
+              >
+                ❌
+              </button>
             </li>
           );
         })}
-        <button onClick={addNew}>Add new list item➕</button>
+        <button className="ctrls-for-delete" onClick={addNew}>
+          Add new list item➕
+        </button>
       </div>
     </>
   );

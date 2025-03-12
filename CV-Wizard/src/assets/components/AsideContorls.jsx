@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useCV from "../utils/context";
 import { cvComponent } from "../utils/draft";
+import html2pdf from "html2pdf.js";
 
 export default function Aside({ setHasDraft }) {
   const [activeTab, setActiveTab] = useState("header");
+  const [download, setDownload] = useState(false);
   const { cvData, setCvData } = useCV();
   const navigate = useNavigate();
   function handleChange(e, attribute) {
@@ -106,7 +108,42 @@ export default function Aside({ setHasDraft }) {
       body: [...cvData.body, "separator-block"],
     });
   }
-  function preview() {}
+  function preview() {
+    setDownload(true);
+    const btns = document.querySelectorAll(".ctrls-for-delete");
+    btns.forEach((btn) => (btn.style.display = "none"));
+  }
+
+  function getFile() {
+    setDownload(false);
+    const element = document.getElementById("cvPage");
+    // from the docs and handy Ai
+    const opt = {
+      margin: [0, 0, 0, 0],
+      filename: "my-cv.pdf",
+      image: { type: "jpeg", quality: 1.0 },
+      html2canvas: {
+        scale: 3,
+        useCORS: true,
+        logging: false,
+        height: element.clientHeight,
+        windowHeight: element.clientHeight,
+      },
+      jsPDF: {
+        unit: "mm",
+        format: "a4",
+        orientation: "portrait",
+        putOnlyUsedFonts: true,
+        compress: true,
+      },
+      pagebreak: { mode: ["avoid-all", "css", "legacy"] },
+    };
+
+    html2pdf().from(element).set(opt).save();
+    const btns = document.querySelectorAll(".ctrls-for-delete");
+    btns.forEach((btn) => (btn.style.display = "initial"));
+  }
+
   function save() {
     //code to send to server
   }
@@ -114,6 +151,11 @@ export default function Aside({ setHasDraft }) {
     navigate("/");
     setHasDraft(false);
     localStorage.removeItem("cvDraft");
+  }
+  function cencelPreview() {
+    setDownload(false);
+    const btns = document.querySelectorAll(".ctrls-for-delete");
+    btns.forEach((btn) => (btn.style.display = "initial"));
   }
   return (
     <aside>
@@ -329,8 +371,12 @@ export default function Aside({ setHasDraft }) {
         </div>
       </div>
       <div className="final-ctrls">
-        <button onClick={preview}>Preview final CV document</button>
-        <button onClick={save}>Save as a draft for later</button>
+        {!download && (
+          <button onClick={preview}>Preview final CV document</button>
+        )}
+        {download && <button onClick={getFile}>download</button>}
+        {download && <button onClick={cencelPreview}>cancel preview</button>}
+        <button onClick={save}>Save to your account for later</button>
         <button onClick={dlt}>I don't like it, delete it</button>
       </div>
     </aside>

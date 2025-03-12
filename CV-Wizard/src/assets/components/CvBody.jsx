@@ -18,8 +18,15 @@ export default function CvBody({ body }) {
           <Block key={index} parent={index} obj={comp} />
         ) : (
           <div key={index} className="b-separator">
-            <p>This is a separator, it will show as white space on print </p>
-            <button onClick={() => deleteBlock(index)}>❌</button>
+            <p className="ctrls-for-delete">
+              This is a separator, it will show as white space on print{" "}
+            </p>
+            <button
+              className="ctrls-for-delete"
+              onClick={() => deleteBlock(index)}
+            >
+              ❌
+            </button>
           </div>
         )
       )}

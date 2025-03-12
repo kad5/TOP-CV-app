@@ -38,10 +38,10 @@ export default function Block({ parent, obj }) {
   }
   return (
     <div className={`b-block ${obj.mode}`}>
-      <button onClick={switchTheme} className="b-block-theme">
+      <button onClick={switchTheme} className="b-block-theme ctrls-for-delete">
         style: {obj.mode}
       </button>
-      <button onClick={deleteBlock} className="b-block-delete">
+      <button onClick={deleteBlock} className="b-block-delete ctrls-for-delete">
         ❌
       </button>
       <Para
@@ -65,7 +65,7 @@ export default function Block({ parent, obj }) {
                   <div className="block-top">
                     <button
                       onClick={() => deleteList(index)}
-                      className="b-list-delete"
+                      className="b-list-delete ctrls-for-delete"
                     >
                       ❌
                     </button>
@@ -94,7 +94,10 @@ export default function Block({ parent, obj }) {
                 </Fragment>
               );
             })}
-            <button onClick={() => addNewCont(parent)}>
+            <button
+              className="ctrls-for-delete"
+              onClick={() => addNewCont(parent)}
+            >
               Add new list container➕
             </button>
           </>

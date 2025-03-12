@@ -44,14 +44,28 @@ export default function Para({ className, keys, init, primary = false }) {
       }}
       className={`inp-wrapper ${className}`}
     >
-      {isActive && <input value={value} onChange={handleInput} />}
+      {isActive && (
+        <input
+          className="ctrls-for-delete"
+          value={value}
+          onChange={handleInput}
+        />
+      )}
       {!isActive && <p>{value}</p>}
       <div className="ctrls">
-        {!isActive && <button onClick={enableEdit}>✍️</button>}
+        {!isActive && (
+          <button className="ctrls-for-delete" onClick={enableEdit}>
+            ✍️
+          </button>
+        )}
         {isActive && (
           <>
-            <button onClick={submitValue}>✅</button>
-            <button onClick={cancelEdit}>✖️</button>
+            <button className="ctrls-for-delete" onClick={submitValue}>
+              ✅
+            </button>
+            <button className="ctrls-for-delete" onClick={cancelEdit}>
+              ✖️
+            </button>
           </>
         )}
       </div>

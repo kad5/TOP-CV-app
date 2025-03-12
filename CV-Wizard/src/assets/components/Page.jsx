@@ -7,6 +7,7 @@ export default function Page({ type = "" }) {
   const { body } = cvData;
   return (
     <div
+      id={"cvPage"}
       className={`cv-page ${type}`}
       style={{ fontSize: `${cvData.styles.fontSize}px` }}
     >
