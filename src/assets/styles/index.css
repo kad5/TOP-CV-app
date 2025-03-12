@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Young+Serif&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  color: hsl(208, 37%, 20%);
+  background-color: hsl(0, 0%, 100%);
+
+  --header-bg: hsl(0, 0%, 100%);
+  --link-clr: hsl(176, 64%, 46%);
+  --link-clr-hover: hsl(176, 64%, 50%);
+  --btn-bg: hsl(0, 0%, 98%);
+  --btn-clr: hsl(208, 37%, 20%);
+  --border: rgba(128, 128, 128, 0.14);
+  transition: background-color 0.2s ease;
+}
+
+body.dark {
+  color: hsla(0, 0%, 100%, 0.87);
+  background-color: hsl(0, 0%, 14%);
+
+  --header-bg: hsl(0, 0%, 14%);
+
+  --link-clr: hsl(0, 0%, 85%);
+  --link-clr-hover: hsl(237, 86%, 64%);
+  --btn-bg: hsl(0, 0%, 24%);
+  --btn-clr: hsl(0, 0%, 98%);
+  --border: rgba(255, 255, 255, 0.14);
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  font-weight: 500;
+  color: var(--link-clr);
+  text-decoration: inherit;
+}
+a:hover {
+  color: var(--link-clr-hover);
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+.aBtn {
+  all: unset;
+  appearance: "button";
+}
+
+button,
+.aBtn {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--btn-bg);
+  color: var(--btn-clr);
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover,
+.aBtn:hover {
+  border-color: var(--link-clr-hover);
+}
+button:focus,
+button:focus-visible,
+.aBtn:focus,
+.aBtn:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-block: 0.5rem;
+  position: relative;
+}
+
+select {
+  appearance: none; /* Removes default styling */
+  -webkit-appearance: none; /* Safari */
+  -moz-appearance: none; /* Firefox */
+  background-color: var(--btn-bg);
+  border: 1px solid var(--link-clr-hover);
+  border-radius: 5px;
+  padding: 8px 12px;
+  padding-right: 30px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: var(--btn-clr);
+}
+
+select {
+  background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='16' height='16'><path d='M7 10l5 5 5-5z' fill='%23000'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+  padding-right: 30px; /* Make space for the icon */
+}
+
+option {
+  color: var(--btn-clr);
+}
