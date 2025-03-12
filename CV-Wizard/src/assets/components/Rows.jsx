@@ -1,7 +1,7 @@
 import useCV from "../utils/context";
 import { setNestedValue } from "../utils/setCV";
 import Para from "./Para";
-export default function Rows({ className, keys, list }) {
+export default function Rows({ className, keys, list, primary = null }) {
   const { setCvData } = useCV();
 
   function addNew() {
@@ -19,13 +19,10 @@ export default function Rows({ className, keys, list }) {
       <div className={className}>
         {list.map((li, index) => {
           if (li === null) return;
-          {
-            console.log(li);
-          }
           const id = [...keys, index];
           return (
             <li key={index}>
-              <Para keys={id} init={li} />
+              <Para keys={id} init={li} primary={primary} />
               <button onClick={() => deleteRow(id)}>❌</button>
             </li>
           );

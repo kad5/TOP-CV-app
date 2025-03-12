@@ -1,8 +1,9 @@
 import { useState } from "react";
 import useCV from "../utils/context";
+import { listItem, cvComponent } from "../utils/draft";
 
 export default function Aside() {
-  const [activeTab, setActiveTab] = useState("general");
+  const [activeTab, setActiveTab] = useState("header");
   const { cvData, setCvData } = useCV();
   function handleChange(e, attribute) {
     setCvData({
@@ -92,6 +93,29 @@ export default function Aside() {
   }
   return (
     <aside>
+      <div>
+        <button className="tab-header" onClick={() => setActiveTab("header")}>
+          CV layout
+        </button>
+        <div className={activeTab === "header" ? "tab open" : "tab"}>
+          <div>
+            <div>
+              <label>
+                Select page layout
+                <select
+                  value={translateValue()}
+                  onChange={(e) => chooseLayout(e.target.value)}
+                >
+                  <option value="standard-h">Standard</option>
+                  <option value="fancy-h">Stramlined</option>
+                  <option value="standard-v">Detailed</option>
+                  <option value="fancy-v">Modern</option>
+                </select>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
       <div>
         <button className="tab-header" onClick={() => setActiveTab("general")}>
           general Styles
@@ -221,29 +245,6 @@ export default function Aside() {
                   style={{ backgroundColor: cvData.styles.accentClr }}
                   className="clr-preview"
                 ></div>
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <button className="tab-header" onClick={() => setActiveTab("header")}>
-          CV layout
-        </button>
-        <div className={activeTab === "header" ? "tab open" : "tab"}>
-          <div>
-            <div>
-              <label>
-                Select page layout
-                <select
-                  value={translateValue()}
-                  onChange={(e) => chooseLayout(e.target.value)}
-                >
-                  <option value="standard-h">Standard</option>
-                  <option value="fancy-h">Stramlined</option>
-                  <option value="standard-v">Detailed</option>
-                  <option value="fancy-v">Modern</option>
-                </select>
               </label>
             </div>
           </div>

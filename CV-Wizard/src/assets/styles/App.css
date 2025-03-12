@@ -131,7 +131,7 @@ footer {
     letter-spacing: 4px;
   }
 }
-p:last-child {
+.hero p:last-child {
   margin-top: 0.5rem;
   font-size: 1rem;
   letter-spacing: 1px;
@@ -469,7 +469,8 @@ aside {
 
 /*vertical header styles */
 
-.h-list {
+.h-list,
+.body-block-list {
   display: flex;
   flex-direction: column;
   > button {
@@ -656,5 +657,120 @@ aside {
     margin-top: 3mm;
     max-width: 200px;
     margin-left: 12px;
+  }
+}
+
+/*--------------------- body styles /*---------------------*/
+
+/* stock body */
+
+.b-block {
+  margin-left: 5mm;
+  .block-title {
+    margin-left: -4mm;
+  }
+}
+
+.b-block:first-of-type {
+  margin-top: 5mm;
+}
+
+.b-block {
+  display: flex;
+  flex-direction: column;
+  padding: 2mm;
+  > .inp-wrapper p {
+    font-size: 1.25em;
+    font-weight: 600;
+  }
+  .block-top {
+    display: flex;
+    gap: 12px;
+    div:first-of-type p {
+      font-weight: 600;
+    }
+    div:last-of-type p {
+      font-style: italic;
+    }
+  }
+  .block-summary {
+    margin-bottom: 1mm;
+    margin-left: 5mm;
+    font-style: italic;
+    text-align: justify;
+    max-width: 82ch;
+  }
+  > div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 3mm;
+    .block-para,
+    .block-list {
+      border-left: 2px dashed rgba(150, 150, 150, 0.404);
+      margin-left: 5mm;
+      padding-left: 3mm;
+      margin-bottom: 1mm;
+      max-width: 82ch;
+      text-align: justify;
+    }
+  }
+}
+
+.vertical .block-para,
+.vertical .block-list,
+.vertical .block-summary {
+  max-width: 47ch !important;
+}
+
+.b-block {
+  position: relative;
+  .b-block-theme {
+    position: absolute !important;
+    right: 40px !important;
+    top: 10px !important;
+    border: 1px solid gray !important;
+    padding-inline: 13px !important;
+    border-radius: 12px !important;
+  }
+  .b-block-delete {
+    position: absolute !important;
+    right: 10px !important;
+    top: 10px !important;
+  }
+}
+
+.block-top {
+  position: relative;
+  .b-list-delete {
+    position: absolute !important;
+    left: -30px !important;
+    top: 0px !important;
+  }
+}
+
+.b-block.compact {
+  .block-summary,
+  .block-list {
+    display: none;
+  }
+}
+
+.b-block.standard {
+  .block-list {
+    display: none;
+  }
+}
+
+.body-block-list {
+  li {
+    margin-left: 0;
+    padding-left: 0;
+    gap: 4px;
+    > button {
+      margin-left: 24px !important;
+    }
+  }
+  li::before {
+    content: "-";
   }
 }

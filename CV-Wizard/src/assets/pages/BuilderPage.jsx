@@ -16,11 +16,12 @@ export default function BuilderPage({ setHasDraft }) {
   // this fixes a bug that caused the state not to update without an unmounting (page reload), so we force a state reset. Thank you AI
   useEffect(() => {
     if (isNew) {
+      console.log("hihi");
       const newCV = blankCV();
       setCvData(newCV); // resets the state
       localStorage.removeItem("cvDraft");
       localStorage.setItem("cvDraft", JSON.stringify(newCV));
-      setSearchParams({}); // clears the "new" parameter so that a donkey user who clicks refresh while working on a draft doesn't trigger a delete of the draft (not refreshing to ?new=true)
+      setSearchParams({}); // clears the "new" parameter so that a  user who clicks refresh while working on a draft doesn't trigger a delete of the draft (not refreshing to ?new=true)
     }
   }, [isNew, setSearchParams]);
 
@@ -29,11 +30,7 @@ export default function BuilderPage({ setHasDraft }) {
   }, [setHasDraft]);
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      localStorage.setItem("cvDraft", JSON.stringify(cvData));
-    }, 2500);
-
-    return () => clearTimeout(timeout); // this only runs upon unmount or new instances or use effect (reacts built in cleanup function allows me to only save if the user pause for 5 seconds reducing too many local storage writes when cvdata changes ie with keystokes for example )
+    localStorage.setItem("cvDraft", JSON.stringify(cvData));
   }, [cvData]);
 
   return (

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useCV from "../utils/context";
 import { setNestedValue } from "../utils/setCV";
 
@@ -7,6 +7,11 @@ export default function Para({ className, keys, init, primary = false }) {
   const [oldValue, setOldValue] = useState(init);
   const [isActive, setIsActive] = useState(false);
   const { cvData, setCvData } = useCV();
+
+  useEffect(() => {
+    setValue(init);
+    setOldValue(init);
+  }, [init]);
 
   function handleInput(e) {
     setValue(e.target.value);
