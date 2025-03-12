@@ -114,7 +114,7 @@ export default function Aside({ setHasDraft }) {
     btns.forEach((btn) => (btn.style.display = "none"));
   }
 
-  function getFile() {
+  async function getFile() {
     setDownload(false);
     const element = document.getElementById("cvPage");
     // from the docs and handy Ai
@@ -139,7 +139,7 @@ export default function Aside({ setHasDraft }) {
       pagebreak: { mode: ["avoid-all", "css", "legacy"] },
     };
 
-    html2pdf().from(element).set(opt).save();
+    await html2pdf().from(element).set(opt).save(); // need to await this before adding the buttons, i think so that fixed it
     const btns = document.querySelectorAll(".ctrls-for-delete");
     btns.forEach((btn) => (btn.style.display = "initial"));
   }

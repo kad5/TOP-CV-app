@@ -1,6 +1,5 @@
 import useCV from "../utils/context";
 import Para from "./Para";
-import EditableList from "./List";
 import Rows from "./Rows";
 
 export default function CvHeader({ type = "" }) {
