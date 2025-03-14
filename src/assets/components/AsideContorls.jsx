@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom";
 import useCV from "../utils/context";
 import { cvComponent } from "../utils/draft";
 import html2pdf from "html2pdf.js";
+import { useApiRequest } from "../utils/apiConfig";
 
 export default function Aside({ setHasDraft }) {
   const [activeTab, setActiveTab] = useState("header");
   const [download, setDownload] = useState(false);
   const { cvData, setCvData } = useCV();
   const navigate = useNavigate();
+  const apiRequest = useApiRequest();
   function handleChange(e, attribute) {
     setCvData({
       ...cvData,
@@ -116,7 +118,7 @@ export default function Aside({ setHasDraft }) {
   async function getFile() {
     setDownload(false);
     const element = document.getElementById("cvPage");
-    // from the docs and handy Ai
+    // from the html2pdfjs docs and handy AI helped configure this
     const opt = {
       margin: [0, 0, 0, 0],
       filename: "my-cv.pdf",
@@ -138,13 +140,21 @@ export default function Aside({ setHasDraft }) {
       pagebreak: { mode: ["avoid-all", "css", "legacy"] },
     };
 
-    await html2pdf().from(element).set(opt).save(); // need to await this before adding the buttons, i think so that fixed it
+    await html2pdf().from(element).set(opt).save(); // need to await this before adding the buttons, i think so that fixed a bug where the buttons would show before the function finishes. so i think its is async
     const btns = document.querySelectorAll(".ctrls-for-delete");
     btns.forEach((btn) => (btn.style.display = "initial"));
   }
 
   function save() {
-    //code to send to server
+    try {
+      const response = apiRequest("/drafts", "POST", {
+        title: "ss",
+        content: cvData,
+      });
+      if (response.status === 200) console.log(response.newDraft);
+    } catch (error) {
+      console.log(error);
+    }
   }
   function dlt() {
     navigate("/");

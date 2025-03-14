@@ -1,9 +1,17 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-export default function Header({ username, logged, hasDraft, startNewCanvas }) {
+import { useApiRequest } from "../utils/apiConfig";
+import { useNavigate } from "react-router-dom";
+export default function Header({
+  username,
+  logged,
+  setLogged,
+  hasDraft,
+  startNewCanvas,
+}) {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "auto");
-
+  const apiRequest = useApiRequest();
+  const navigate = useNavigate();
   useEffect(() => {
     if (theme === "auto") {
       window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -23,6 +31,18 @@ export default function Header({ username, logged, hasDraft, startNewCanvas }) {
     const nextTheme = themeOrder[(currentIndex + 1) % themeOrder.length];
     setTheme(nextTheme);
   }
+
+  async function logOut() {
+    try {
+      const response = await apiRequest("/log-out", "POST");
+      console.log(response);
+      localStorage.removeItem("accessToken");
+      setLogged(false);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <header>
       <div>
@@ -34,16 +54,16 @@ export default function Header({ username, logged, hasDraft, startNewCanvas }) {
             <>
               <li>Welcome back, {username || "User"}</li>
               <li>
-                <Link to="/dashboard">Dashboard</Link>
+                <Link to="/profile">Profile</Link>
               </li>
               <li>
-                <Link to="/logout">Log out</Link>
+                <button onClick={logOut}>Log out</button>
               </li>
             </>
           ) : (
             <>
               <li>
-                <Link to="/login">Sign in</Link>
+                <Link to="/login">Log in</Link>
               </li>
               <li>
                 <Link to="/signup">Sign up</Link>

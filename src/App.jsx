@@ -5,6 +5,8 @@ import Header from "./assets/components/Header";
 import Footer from "./assets/components/Footer";
 import MainPage from "./assets/pages/mainPage";
 import BuilderPage from "./assets/pages/BuilderPage";
+import LoginSignup from "./assets/pages/LoginSignupPage";
+import Profile from "./assets/pages/Profile";
 
 function App() {
   const [logged, setLogged] = useState(false);
@@ -24,6 +26,7 @@ function App() {
       <Header
         username={username}
         logged={logged}
+        setLogged={setLogged}
         hasDraft={hasDraft}
         startNewCanvas={startNewCanvas}
       ></Header>
@@ -43,6 +46,37 @@ function App() {
             <BuilderPage className="page-wrapper" setHasDraft={setHasDraft} />
           }
         />
+        <Route
+          path="/login"
+          element={
+            <LoginSignup
+              login={true}
+              setLogged={setLogged}
+              setUsername={setUsername}
+            />
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <LoginSignup
+              login={false}
+              setLogged={setLogged}
+              setUsername={setUsername}
+            />
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            logged ? (
+              <Profile username={username} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <Footer></Footer>
