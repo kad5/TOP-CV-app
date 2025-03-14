@@ -4,8 +4,34 @@ export function useApiRequest() {
   const navigate = useNavigate();
   const BASE_URL = "https://top-cv-api-production.up.railway.app/api";
 
+  async function tryRefresh() {
+    console.warn("🔄 Token expired. Attempting refresh...");
+    try {
+      const refresh = await fetch(`${BASE_URL}/auth/refresh`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+
+      if (!refresh.ok) {
+        throw new Error("Failed to refresh token");
+      }
+
+      const refreshData = await refresh.json();
+      localStorage.setItem("accessToken", refreshData.accessToken);
+      return refreshData;
+    } catch (refreshError) {
+      console.error("Unauthorized:", refreshError);
+      navigate("/login");
+      return;
+    }
+  }
+
   async function apiRequest(endpoint, type, payload = null, retry = true) {
     const token = localStorage.getItem("accessToken");
+    console.log(token);
     const url = `${BASE_URL}${endpoint}`;
     const myHeaders = new Headers({
       "Content-Type": "application/json",
@@ -32,42 +58,22 @@ export function useApiRequest() {
       } else {
         data = { message: "No JSON response" };
       }
-
+      // try refresh
       if (response.status === 401 && retry) {
-        console.warn("🔄 Token expired. Attempting refresh...");
-        try {
-          const refresh = await fetch(`${BASE_URL}/auth/refresh`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            credentials: "include",
-          });
-
-          if (!refresh.ok) {
-            throw new Error("Failed to refresh token");
-          }
-
-          const refreshData = await refresh.json();
-          localStorage.setItem("accessToken", refreshData.accessToken);
-
-          return apiRequest(endpoint, type, payload, false);
-        } catch (refreshError) {
-          console.error("Unauthorized:", refreshError);
-          navigate("/login");
-          return;
-        }
+        const refresh = await tryRefresh();
+        console.log(refresh);
+        return apiRequest(endpoint, type, payload, false);
       }
-
+      // universal error handling
       if (!response.ok) {
         if (response.status === 404) {
-          navigate("/404");
+          return navigate("/404");
         } else if (response.status >= 500) {
-          navigate("/500");
+          return navigate("/500");
         }
-        throw new Error(data.message || `Error: ${response.status}`);
       }
-      return data;
+      // send back the data and any 401, 403, 409 will be handled on case per case basis
+      return { data, status: response.status };
     } catch (error) {
       console.error("API Request Failed:", error);
       throw error; // re-throw for handling in components

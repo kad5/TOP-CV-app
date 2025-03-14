@@ -16,7 +16,7 @@ export default function Profile({ username }) {
     setLoading(true);
     try {
       const response = await apiRequest("/drafts", "GET");
-      setDrafts(response.drafts);
+      setDrafts(response.data.drafts);
     } catch (error) {
       console.log(error);
       setError("A problem occurred, please try again.");
@@ -32,7 +32,9 @@ export default function Profile({ username }) {
   async function deleteDraft(id) {
     try {
       const response = await apiRequest("/drafts", "DELETE", { draftId: id });
-      setDrafts((dr) => dr.filter((d) => d.id !== response.deletedDraft.id));
+      setDrafts((dr) =>
+        dr.filter((d) => d.id !== response.data.deletedDraft.id)
+      );
     } catch (error) {
       console.log(error);
       setError("A problem occurred, please try again.");

@@ -34,7 +34,7 @@ export default function Header({
 
   async function logOut() {
     try {
-      const response = await apiRequest("/log-out", "POST");
+      const response = await apiRequest("/auth/log-out", "POST");
       console.log(response);
       localStorage.removeItem("accessToken");
       setLogged(false);
@@ -52,7 +52,7 @@ export default function Header({
         <ul>
           {logged ? (
             <>
-              <li>Welcome back, {username || "User"}</li>
+              <li>Welcome back, {username}</li>
               <li>
                 <Link to="/profile">Profile</Link>
               </li>

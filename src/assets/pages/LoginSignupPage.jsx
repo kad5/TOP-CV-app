@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useApiRequest } from "../utils/apiConfig";
 import { useNavigate } from "react-router-dom";
 export default function LoginSignup({ login, setLogged, setUsername }) {
-  const [username, setusername] = useState("");
+  const [username, setUsernameInp] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [errors, setErrors] = useState([]);
@@ -23,22 +23,24 @@ export default function LoginSignup({ login, setLogged, setUsername }) {
       return;
     }
     try {
-      const endpoint = login ? "/log-in" : "/sign-up";
+      const endpoint = login ? "/auth/log-in" : "/auth/sign-up";
       const body = login
         ? { username, password }
         : { username, password, confirm };
 
       const response = await apiRequest(endpoint, "POST", body, false);
-
       if (response.status === 200 || response.status === 201) {
         setLoading(false);
         setLogged(true);
-        setUsername(response.username);
-        localStorage.setItem("accessToken", response.accessToken);
-        navigate("/profile");
+        setUsername(response.data.username);
+        localStorage.setItem("accessToken", response.data.accessToken);
+        return navigate("/profile");
       } else {
-        if (response.status === 401 || response.status === 409)
-          setErrors([response.message]);
+        if (response.status === 401 || response.status === 409) {
+          setErrors([response.data.message]);
+        }
+        setLoading(false);
+        return;
       }
     } catch (error) {
       console.log(error);
@@ -62,7 +64,7 @@ export default function LoginSignup({ login, setLogged, setUsername }) {
             type="text"
             placeholder={login ? "Enter your username" : "Pick a username"}
             value={username}
-            onChange={(e) => setusername(e.target.value)}
+            onChange={(e) => setUsernameInp(e.target.value)}
           />
           <input
             type="password"
