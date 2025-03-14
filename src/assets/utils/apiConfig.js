@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "./AuthContext";
 
 export function useApiRequest() {
+  const { setLogged } = useAuth();
   const navigate = useNavigate();
   const BASE_URL = "https://top-cv-api-production.up.railway.app/api";
 
@@ -23,7 +25,8 @@ export function useApiRequest() {
       localStorage.setItem("accessToken", refreshData.accessToken);
       return refreshData;
     } catch (refreshError) {
-      console.error("Unauthorized:", refreshError);
+      console.error("Unauthorized refresh:", refreshError);
+      setLogged(false);
       navigate("/login");
       return;
     }

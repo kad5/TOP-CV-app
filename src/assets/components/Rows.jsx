@@ -1,4 +1,4 @@
-import useCV from "../utils/context";
+import useCV from "../utils/CvContext";
 import { setNestedValue } from "../utils/setCV";
 import Para from "./Para";
 export default function Rows({ className, keys, list, primary = null }) {

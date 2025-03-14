@@ -7,13 +7,15 @@ import MainPage from "./assets/pages/mainPage";
 import BuilderPage from "./assets/pages/BuilderPage";
 import LoginSignup from "./assets/pages/LoginSignupPage";
 import Profile from "./assets/pages/Profile";
+import ProtectedRoute from "./assets/pages/ProtectedRoute";
+import { useAuth } from "./assets/utils/AuthContext";
 
 function App() {
-  const [logged, setLogged] = useState(false);
-  const [username, setUsername] = useState(null);
+  const { logged, setLogged, username, setUsername } = useAuth();
   const [hasDraft, setHasDraft] = useState(!!localStorage.getItem("cvDraft"));
 
   const navigate = useNavigate();
+
   function startNewCanvas() {
     if (hasDraft) {
       const confirmDelete = window.confirm("You have a draft. Start a new CV?");
@@ -66,8 +68,15 @@ function App() {
             />
           }
         />
-        <Route path="/profile" element={<Profile username={username} />} />
-
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute logged={logged} setLogged={setLogged}>
+              <Profile username={username} />
+            </ProtectedRoute>
+          }
+        />
+        ;
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <Footer></Footer>

@@ -1,6 +1,6 @@
 import CvHeader from "./CvHeader";
 import CvBody from "./CvBody";
-import useCV from "../utils/context";
+import useCV from "../utils/CvContext";
 
 export default function Page({ type = "" }) {
   const { cvData } = useCV();

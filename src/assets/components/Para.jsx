@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import useCV from "../utils/context";
+import useCV from "../utils/CvContext";
 import { setNestedValue } from "../utils/setCV";
 
 export default function Para({ className, keys, init, primary = false }) {

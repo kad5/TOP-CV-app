@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { blankCV } from "../utils/draft";
 import Aside from "../components/AsideContorls";
 import Page from "../components/Page";
-import { CVContext } from "../utils/context";
+import { CVContext } from "../utils/CvContext";
 
 export default function BuilderPage({ setHasDraft }) {
   const [searchParams, setSearchParams] = useSearchParams();

@@ -1,4 +1,4 @@
-import useCV from "../utils/context";
+import useCV from "../utils/CvContext";
 import Para from "./Para";
 import Rows from "./Rows";
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useCV from "../utils/context";
+import useCV from "../utils/CvContext";
 import { cvComponent } from "../utils/draft";
 import html2pdf from "html2pdf.js";
 import { useApiRequest } from "../utils/apiConfig";
