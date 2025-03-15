@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 export default function MainPage({ startNewCanvas }) {
   return (
     <main>
-      <section className="hero">
+      <section className="hero ">
         <h1>CV Simple</h1>
         <p>Create elegant, high quality resume pages fast with ease</p>
         <div>

@@ -9,6 +9,7 @@ import LoginSignup from "./assets/pages/LoginSignupPage";
 import Profile from "./assets/pages/Profile";
 import ProtectedRoute from "./assets/pages/ProtectedRoute";
 import { useAuth } from "./assets/utils/AuthContext";
+import ErrorPage from "./assets/pages/ErrorPage";
 
 function App() {
   const { logged, setLogged, username, setUsername } = useAuth();
@@ -76,10 +77,10 @@ function App() {
             </ProtectedRoute>
           }
         />
-        ;
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="/500" element={<ErrorPage code={500} />} />
+        <Route path="*" element={<ErrorPage code={404} />} />
       </Routes>
-      <Footer></Footer>
+      <Footer logged={logged}></Footer>
     </>
   );
 }

@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 export function blankCV() {
   return {
     id: null,
-    userId: null,
+    title: null,
     styles: {
       fontSize: 16,
       primaryFontStyle: "DM Sans",

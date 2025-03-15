@@ -911,3 +911,99 @@ aside {
 }
 
 /*---------------------- profile page----------------------*/
+
+.profile-page {
+  padding: 2rem;
+  h2 span {
+    color: var(--link-clr);
+  }
+}
+
+.profile-page {
+  div:has(.loading-drafts) {
+    margin-bottom: 15rem;
+    p {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+    }
+  }
+}
+
+.cards-container {
+  padding: 1rem;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, 20rem);
+  margin-bottom: 3rem;
+  justify-content: center;
+}
+
+.cv-card {
+  padding: 0.25rem 2rem 2rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border);
+  h3 {
+    text-align: center;
+  }
+  > p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+}
+
+.cv-card .cv-card-ctrls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/*------------------ toast ---------------------*/
+
+.toast {
+  display: flex;
+  position: fixed;
+  bottom: -300px;
+  right: -500px;
+  background-color: var(--btn-bg);
+  padding: 0.5rem 1rem 0.5rem 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: bottom 300ms ease;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.toast.success {
+  outline: 1px solid #4caf50;
+}
+
+.toast.error {
+  outline: 1px solid #f44336;
+}
+
+.toast button {
+  all: unset;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.toast-visible {
+  bottom: 30px;
+  right: 30px;
+}
+
+.animate-toast-out {
+  right: -500px;
+  transition: right 300ms ease;
+}
+
+/*extras*/

@@ -5,13 +5,16 @@ import "./assets/styles/index.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import App from "./App.jsx";
 import { AuthProvider } from "./assets/utils/AuthContext.jsx";
+import ToastProvider from "./assets/utils/ToastProvider.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AuthProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </AuthProvider>
+    <BrowserRouter>
+      <AuthProvider>
+        <ToastProvider>
+          <App />
+        </ToastProvider>
+      </AuthProvider>
+    </BrowserRouter>
   </StrictMode>
 );

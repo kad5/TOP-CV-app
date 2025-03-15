@@ -33,6 +33,7 @@ export default function LoginSignup({ login, setLogged, setUsername }) {
         setLoading(false);
         setLogged(true);
         setUsername(response.data.username);
+        localStorage.setItem("username", response.data.username);
         localStorage.setItem("accessToken", response.data.accessToken);
         return navigate("/profile");
       } else {

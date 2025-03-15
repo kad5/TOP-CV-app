@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useApiRequest } from "../utils/apiConfig";
 import { useNavigate } from "react-router-dom";
+import useToast from "../utils/ToastContext";
+
 export default function Header({
   username,
   logged,
@@ -10,6 +12,7 @@ export default function Header({
   startNewCanvas,
 }) {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "auto");
+  const { setIsShown, setMsg, setType } = useToast();
   const apiRequest = useApiRequest();
   const navigate = useNavigate();
   useEffect(() => {
@@ -35,7 +38,9 @@ export default function Header({
   async function logOut() {
     try {
       const response = await apiRequest("/auth/log-out", "POST");
-      console.log(response);
+      setIsShown(true);
+      setMsg(response.data.message);
+      setType("success");
       localStorage.removeItem("accessToken");
       setLogged(false);
       navigate("/");

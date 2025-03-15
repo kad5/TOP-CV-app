@@ -4,11 +4,13 @@ import useCV from "../utils/CvContext";
 import { cvComponent } from "../utils/draft";
 import html2pdf from "html2pdf.js";
 import { useApiRequest } from "../utils/apiConfig";
+import useToast from "../utils/ToastContext";
 
 export default function Aside({ setHasDraft }) {
   const [activeTab, setActiveTab] = useState("header");
   const [download, setDownload] = useState(false);
   const { cvData, setCvData } = useCV();
+  const { setIsShown, setMsg, setType } = useToast();
   const navigate = useNavigate();
   const apiRequest = useApiRequest();
   function handleChange(e, attribute) {
@@ -143,15 +145,35 @@ export default function Aside({ setHasDraft }) {
     await html2pdf().from(element).set(opt).save(); // need to await this before adding the buttons, i think so that fixed a bug where the buttons would show before the function finishes. so i think its is async
     const btns = document.querySelectorAll(".ctrls-for-delete");
     btns.forEach((btn) => (btn.style.display = "initial"));
+    setIsShown(true);
+    setMsg("Go get them jobs 🐯");
+    setType("success");
   }
 
-  function save() {
+  async function save() {
+    const method = cvData.id === null ? "POST" : "PUT";
+    const payload =
+      cvData.id === null
+        ? { title: prompt("choose a title for this draft"), content: cvData }
+        : {
+            draftId: cvData.id,
+            data: { title: cvData.title, content: cvData },
+          };
     try {
-      const response = apiRequest("/drafts", "POST", {
-        title: "ss",
-        content: cvData,
-      });
-      if (response.status === 200) console.log(response.newDraft);
+      const response = await apiRequest("/drafts", method, payload);
+      console.log(response);
+      if (response?.status === 200) {
+        setIsShown(true);
+        method === "POST"
+          ? setMsg("Added to you account succesfully 🤩")
+          : setMsg("Your updates have been saved 🤩");
+        setType("success");
+      }
+      if (response?.status === 400) {
+        setIsShown(true);
+        setMsg(response.data.message);
+        setType("error");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -160,6 +182,9 @@ export default function Aside({ setHasDraft }) {
     navigate("/");
     setHasDraft(false);
     localStorage.removeItem("cvDraft");
+    setIsShown(true);
+    setMsg("You're the boss, draft deleted");
+    setType("success");
   }
   function cencelPreview() {
     setDownload(false);

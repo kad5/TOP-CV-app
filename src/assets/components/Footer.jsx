@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function Footer() {
+export default function Footer({ logged }) {
   return (
     <footer>
       <div>
@@ -43,8 +43,16 @@ export default function Footer() {
         <Link to="/about">About & Contact Us</Link>
       </div>
       <div>
-        <Link to="/login">Log in</Link>
-        <Link to="/signup">Sign up</Link>
+        {logged ? (
+          <>
+            <Link to="/profile">Profile</Link>
+          </>
+        ) : (
+          <>
+            <Link to="/login">Log in</Link>
+            <Link to="/signup">Sign up</Link>
+          </>
+        )}
         <Link to="">Share</Link>
       </div>
     </footer>
