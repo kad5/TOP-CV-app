@@ -221,13 +221,13 @@ footer {
   }
 }
 .img-cont1 {
-  background-image: url("temps.png");
+  background-image: url("/temps.png");
 }
 .img-cont2 {
-  background-image: url("fill.png");
+  background-image: url("/fill.png");
 }
 .img-cont3 {
-  background-image: url("pdf.png");
+  background-image: url("/pdf.png");
 }
 
 /*section 3*/
